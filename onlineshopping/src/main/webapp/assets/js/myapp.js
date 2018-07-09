@@ -16,8 +16,8 @@ $(function() {
 	case 'Contact Us':
 		$('.contact').addClass('active');
 		break;
-	case 'View Products':
-		$('.').addClass('active');
+	case 'All Products':
+		$('.listproducts').addClass('active');
 		break;
 	case 'Manage Products':
 		$('.manageProducts').addClass('active');

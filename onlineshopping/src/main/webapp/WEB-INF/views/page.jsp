@@ -65,6 +65,11 @@
 	<%@include file="signup.jsp" %>
 	</c:if>
 	
+	<!-- Loding View Products Page -->
+	<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
+	<%@include file="listproducts.jsp" %>
+	</c:if>
+	
 	</div>
 	
 	<!-- Footer -->

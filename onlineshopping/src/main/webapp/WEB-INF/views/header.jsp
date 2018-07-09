@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="home"><a href="${contextRoot}/home">Home</a></li>
-        <li class="listproducts"><a href="${contextRoot}/listproducts">View All Products</a></li>
+        <li class="listproducts"><a href="${contextRoot}/show/all/products">View All Products</a></li>
         <li class="about"><a href="${contextRoot}/about">About</a></li>
         <li class="contact"><a href="${contextRoot}/contact">Contact</a></li>
       </ul>

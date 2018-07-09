@@ -16,6 +16,13 @@
 
 	<dependencies>
 
+		<!-- Linking backend with frontend -->
+		<dependency>
+			<groupId>niit.com</groupId>
+			<artifactId>shoppingbackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- Junit -->
 		<dependency>
 			<groupId>junit</groupId>

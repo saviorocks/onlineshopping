@@ -276,3 +276,26 @@ img {
 {
 	color: #ff0000;
 }
+
+/*
+Custom Styling
+*/
+
+.wrapper
+{
+	min-height: 100%;
+	position: relative;
+}
+
+.content
+{
+	padding-bottom: 60px;
+}
+
+.footer
+{
+	position: absolute;
+	bottom: 0;
+	height: 60px;
+	
+}

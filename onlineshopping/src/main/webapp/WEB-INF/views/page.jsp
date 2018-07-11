@@ -8,73 +8,85 @@
 <spring:url var="images" value="/resources/images" />
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Online Shopping - ${title}</title>
 
 <script>
 	window.menu = '${title}';
+
+	window.contextRoot = '${contextRoot}'
 </script>
+
 
 <!-- Bootstrap Core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap Sandstom Theme -->
+<!-- Bootstrap Template -->
 <link href="${css}/bootstrap-slate-theme.css" rel="stylesheet">
 
+<%-- <!-- Bootstrap DataTables -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+ --%>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.css" />
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
 </head>
+
 <body>
 
 	<div class="wrapper">
 
-	<!-- Navigation -->
-	 <%@include file="header.jsp" %>
-	
-	<!-- Page Content -->
-	
-	<div class="content">
-	<!-- Loding Home Page -->
-	<c:if test="${userClickHome == true}">
-	<%@include file="home.jsp" %>
-	</c:if>
-	
-	<!-- Loding About Page -->
-	
-	<c:if test="${userClickAbout == true}">
-	<%@include file="about.jsp" %>
-	</c:if>
-	
-	<!-- Loding Contact Page -->
-	<c:if test="${userClickContact == true}">
-	<%@include file="contact.jsp" %>
-	</c:if>
-	
-	<!-- Loding Login Page -->
-	<c:if test="${userClickLogin == true}">
-	<%@include file="login.jsp" %>
-	</c:if>
-	
-	<!-- Loding Signup Page -->
-	<c:if test="${userClickSign == true}">
-	<%@include file="signup.jsp" %>
-	</c:if>
-	
-	<!-- Loding View Products Page -->
-	<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
-	<%@include file="listproducts.jsp" %>
-	</c:if>
-	
-	</div>
-	
-	<!-- Footer -->
-	<%@include file="footer.jsp" %>
+		<!-- Navigation -->
+		<%@include file="header.jsp"%>
 
+		<!-- Page Content -->
+
+		<div class="content">
+
+			<!-- Loading the home content -->
+			<c:if test="${userClickHome == true }">
+				<%@include file="home.jsp"%>
+			</c:if>
+
+			<!-- Load only when user clicks about -->
+			<c:if test="${userClickAbout == true }">
+				<%@include file="about.jsp"%>
+			</c:if>
+
+			<!-- Load only when user clicks contact -->
+			<c:if test="${userClickContact == true }">
+				<%@include file="contact.jsp"%>
+			</c:if>
+
+			<!-- Load only when user clicks contact -->
+			<c:if
+				test="${userClickAllProducts == true or userClickCategoryProducts == true }">
+				<%@include file="listproducts.jsp"%>
+			</c:if>
+
+
+			<!-- Load only when user clicks show product -->
+			<c:if test="${userClickShowProduct == true}">
+				<%@include file="singleproduct.jsp"%>
+			</c:if>
+
+			<%-- <!-- Load only when user clicks manage product -->
+			<c:if test="${userClickManageProduct == true}">
+				<%@include file="manageproducts.jsp"%>
+			</c:if> --%>
+
+		</div>
+
+
+		<!-- Footer comes here -->
+		<%@include file="footer.jsp"%>
 
 		<!-- JQuery -->
 		<script src="${js}/jquery.js"></script>
@@ -82,10 +94,22 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
 
+		<%-- <!-- Datatables -->
+		<script src="${js}/jquery.dataTables.js"></script>
+
+		<!-- Datatables Bootstrap -->
+		<script src="${js}/dataTables.bootstrap.js"></script> --%>
+
+		<script type="text/javascript"
+			src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+		<script type="text/javascript"
+			src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.js"></script>
+
 		<!-- Self Coded JavaScript -->
 		<script src="${js}/myapp.js"></script>
-	
+
 	</div>
-	
+
 </body>
+
 </html>

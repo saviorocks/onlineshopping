@@ -1,5 +1,7 @@
 package com.niit.shoppingbackend.daoimpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -75,6 +77,45 @@ public class UserDAOImpl implements UserDAO
 					.setParameter("email", email).getSingleResult();
 		}
 		catch (Exception e) 
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Address getBillingAddress(User user) 
+	{
+	
+		String selectQuery = "FROM Address WHERE user = :user AND billing = :billing";
+		try
+		{
+			return sessionFactory.getCurrentSession()
+					.createQuery(selectQuery, Address.class)
+						.setParameter("user", user)
+							.setParameter("billing", true)
+								.getSingleResult();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Address> listShippingAddresses(User user) 
+	{
+		String selectQuery = "FROM Address WHERE user = :user AND shipping = :shipping";
+		try
+		{
+			return sessionFactory.getCurrentSession()
+					.createQuery(selectQuery, Address.class)
+						.setParameter("user", user)
+							.setParameter("shipping", true)
+								.getResultList();
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 			return null;

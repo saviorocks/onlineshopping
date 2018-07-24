@@ -8,19 +8,6 @@ CREATE TABLE category (
 
 );
 
-CREATE TABLE user_detail (
-	id IDENTITY,
-	first_name VARCHAR(50),
-	last_name VARCHAR(50),
-	role VARCHAR(50),
-	enabled BOOLEAN,
-	password VARCHAR(60),
-	email VARCHAR(100),
-	contact_number VARCHAR(15),	
-	CONSTRAINT pk_user_id PRIMARY KEY(id)
-);
-
-
 CREATE TABLE product (
 	id IDENTITY,
 	code VARCHAR(20),
@@ -38,6 +25,18 @@ CREATE TABLE product (
  	CONSTRAINT fk_product_category_id FOREIGN KEY (category_id) REFERENCES category (id),
 	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail(id),	
 );	
+
+CREATE TABLE user_detail (
+	id IDENTITY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	role VARCHAR(50),
+	enabled BOOLEAN,
+	password VARCHAR(60),
+	email VARCHAR(100),
+	contact_number VARCHAR(15),	
+	CONSTRAINT pk_user_id PRIMARY KEY(id)
+);
 
 -- the address table to store the user billing and shipping addresses
 CREATE TABLE address (

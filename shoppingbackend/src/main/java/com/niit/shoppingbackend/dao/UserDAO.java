@@ -14,11 +14,11 @@ public interface UserDAO
 	//add address	
 	boolean addAddress(Address address);
 	//alternative 
-	//Address getBillingAddress(int userId);
-	//List<Address> listShippingAddresses(int userId);
+	Address getBillingAddress(int userId);
+	List<Address> listShippingAddresses(int userId);
 	
-	Address getBillingAddress(User user);
-	List<Address> listShippingAddresses(User user);
+	//Address getBillingAddress(User user);
+	//List<Address> listShippingAddresses(User user);
 	//add cart
 	boolean updateCart(Cart cart);
 	

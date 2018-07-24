@@ -17,7 +17,7 @@
         <li class="contact"><a href="${contextRoot}/contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="signup"><a href="${contextRoot}/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li class="signup"><a href="${contextRoot}/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li class="login"><a href="${contextRoot}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>

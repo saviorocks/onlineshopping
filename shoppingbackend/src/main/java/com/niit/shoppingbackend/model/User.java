@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -41,7 +42,7 @@ public class User implements Serializable{
 	@NotBlank(message = "Please enter password!")
 	private String password;
 	private boolean enabled = true;
-	/*@Transient
+	@Transient
 	private String confirmPassword;
 
 	public String getConfirmPassword() {
@@ -49,7 +50,7 @@ public class User implements Serializable{
 	}
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
-	}*/
+	}
 	
 	public int getId() {
 		return id;

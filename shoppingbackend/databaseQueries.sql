@@ -116,16 +116,16 @@ INSERT INTO category (name, description,image_url,is_active) VALUES ('Mobile', '
 -- adding three users 
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Virat', 'Kohli', 'ADMIN', true, '1234', 'vk@gmail.com', '8888888888');
+VALUES ('Savio', 'Menezes', 'ADMIN', true, '$2y$12$3h4Fs3.SWg7ik6Y.7wcjNudPw39s68SDD2eCf2I9P3FMHRtBVB4.e', 'sm@gmail.com', '8888888888');
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Ravindra', 'Jadeja', 'SUPPLIER', true, '1234', 'rj@gmail.com', '9999999999');
+VALUES ('Ravindra', 'Jadeja', 'SUPPLIER', true, '$2y$12$cLTZCAtkBgV1B1fnEbJiJuJNFUj54RaZbq6qdd618ow8k1S48pyxq', 'rj@gmail.com', '9999999999');
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Ravichandra', 'Ashwin', 'SUPPLIER', true, '1234', 'ra@gmail.com', '7777777777');
+VALUES ('Ravichandra', 'Ashwin', 'SUPPLIER', true, '$2y$12$cLTZCAtkBgV1B1fnEbJiJuJNFUj54RaZbq6qdd618ow8k1S48pyxq', 'ra@gmail.com', '7777777777');
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Reynold', 'Menezes', 'USER', true, '1234', 'rm@gmail.com', '7777777777');
+VALUES ('Reynold', 'Menezes', 'USER', true, '$2y$12$cLTZCAtkBgV1B1fnEbJiJuJNFUj54RaZbq6qdd618ow8k1S48pyxq', 'rm@gmail.com', '7777777777');
 
 -- adding five products
 INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)

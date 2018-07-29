@@ -53,41 +53,49 @@
 
 				<div class="col-xs-12">
 
-					<table 
-						class="table table-striped table-border productListTable">
+					<div class="container-fluid">
 
-						<thead>
+						<div class="table-responsive">
 
-							<tr>
+							<table class="table table-striped table-border productListTable">
 
-								<th></th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th></th>
+								<thead>
 
-							</tr>
+									<tr>
 
-						</thead>
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th></th>
+
+									</tr>
+
+								</thead>
 
 
-						 <tfoot>
+								<tfoot>
 
-							<tr>
+									<tr>
 
-								<th></th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th></th>
-							
-							</tr>
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Quantity</th>
+										<th></th>
 
-						</tfoot>
+									</tr>
 
-					</table>
+								</tfoot>
+
+							</table>
+
+
+						</div>
+
+					</div>
 
 				</div>
 

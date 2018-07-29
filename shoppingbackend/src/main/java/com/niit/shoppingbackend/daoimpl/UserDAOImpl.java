@@ -66,22 +66,21 @@ public class UserDAOImpl implements UserDAO
 	}
 
 	@Override
-	public User getByEmail(String email) 
-	{
-		
-		String selectQuery ="FROM User WHERE email = :email";
-		
-		try
-		{
-			return sessionFactory.getCurrentSession().createQuery(selectQuery, User.class)
-					.setParameter("email", email).getSingleResult();
+	public User getByEmail(String email) {
+		String selectQuery = "FROM User WHERE email = :email";
+		try {
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,User.class)
+						.setParameter("email",email)
+							.getSingleResult();
 		}
-		catch (Exception e) 
-		{
-			e.printStackTrace();
+		catch(Exception ex) {
+			ex.printStackTrace();
 			return null;
 		}
-	}
+							
+}
 
 	@Override
 	public Address getBillingAddress(int userId) 

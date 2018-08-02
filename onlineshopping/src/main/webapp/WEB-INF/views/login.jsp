@@ -13,6 +13,12 @@
 
 <head>
 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
 <title>Online Shopping - ${title}</title>
 
 <script>
@@ -127,19 +133,12 @@
 									
 									<div class="form-group">
 										<div class="col-md-offset-4 col-md-8">
-											<input type="submit" value="Login" class="btn btn-primary" />
 											<input type="hidden" name="${_csrf.parameterName}"
 												value="${_csrf.token}" />
+											<input type="submit" value="Login" class="btn btn-primary" />
 										</div>
 									</div>
-									
-									
-									
-									
-									
-									
-									
-									
+												
 								</form>
 
 							</div>
@@ -168,12 +167,6 @@
 
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
-
-
-		<script type="text/javascript"
-			src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
-		<script type="text/javascript"
-			src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.js"></script>
 
 		<!-- jquery validator -->
 		<script src="${js}/jquery.validate.js"></script>

@@ -57,7 +57,7 @@
 
 						<div class="table-responsive">
 
-							<table class="table table-striped table-border productListTable">
+							<table class="table table-striped table-border" id="productListTable">
 
 								<thead>
 
@@ -105,4 +105,15 @@
 		</div>
 
 	</div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+

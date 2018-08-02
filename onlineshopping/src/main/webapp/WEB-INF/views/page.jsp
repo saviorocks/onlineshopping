@@ -35,11 +35,10 @@
 <!-- Bootstrap Template -->
 <link href="${css}/bootstrap-slate-theme.css" rel="stylesheet">
 
-<%-- <!-- Bootstrap DataTables -->
+ <!-- Bootstrap DataTables -->
 <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
- --%>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.css" />
+ 
+
 
 <!-- Custom CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -87,6 +86,11 @@
 			<!-- Load only when user clicks manage product -->
 			<c:if test="${userClickManageProducts == true}">
 				<%@include file="manageproducts.jsp"%>
+			</c:if>
+			
+			<!-- Load only when user clicks cart -->
+			<c:if test="${userClickShowCart == true}">
+				<%@include file="cart.jsp"%>
 			</c:if> 
 
 		</div>
@@ -101,17 +105,13 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
 
-		<%-- <!-- Datatables -->
+		 <!-- Datatables -->
 		<script src="${js}/jquery.dataTables.js"></script>
 
 		<!-- Datatables Bootstrap -->
-		<script src="${js}/dataTables.bootstrap.js"></script> --%>
+		<script src="${js}/dataTables.bootstrap.js"></script> 
 
-		<script type="text/javascript"
-			src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
-		<script type="text/javascript"
-			src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.js"></script>
-
+		
 		<!-- jquery validator -->
 		<script src="${js}/jquery.validate.js"></script>
 

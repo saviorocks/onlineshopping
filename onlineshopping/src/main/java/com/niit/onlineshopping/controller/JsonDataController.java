@@ -13,33 +13,59 @@ import com.niit.shoppingbackend.model.Product;
 
 @Controller
 @RequestMapping("/json/data")
-public class JsonDataController {
+public class JsonDataController 
+{
 
 	@Autowired
 	private ProductDAO productDAO;
-
+	
+	
+	
 	@RequestMapping("/all/products")
 	@ResponseBody
-	public List<Product> getAllProducts() {
-
+	
+	
+	public List<Product> getAllProducts()
+	
+	
+	{
 		return productDAO.listActiveProducts();
-
+		
 	}
 	
+	
+	
+	
+	
+	
+
 	@RequestMapping("/admin/all/products")
 	@ResponseBody
-	public List<Product> getAllProductsForAdmin() {
-
+	
+	
+	public List<Product> getAllProductsForAdmin()
+	
+	
+	{
 		return productDAO.list();
-
+		
 	}
-
+	
+	
+	
+	
+	
 	@RequestMapping("/category/{id}/products")
 	@ResponseBody
-	public List<Product> getProductsByCategory(@PathVariable int id) {
-
+	
+	
+	public List<Product> getAllProductsByCategory(@PathVariable int id)
+	
+	
+	{
 		return productDAO.listActiveProductsByCategory(id);
-
+		
 	}
+	
 
 }

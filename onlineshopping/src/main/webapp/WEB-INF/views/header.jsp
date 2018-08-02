@@ -29,7 +29,7 @@
 		
 		
 		<security:authorize access="isAuthenticated()">
-					<li class="dropdown" ><a href="javascript:void(0)"
+					<li class="dropdown" id="userCart"><a href="javascript:void(0)"
 						class="btn btn-default dropdown-toggle" id="dropdownMenu1"
 						data-toggle="dropdown"> ${userModel.fullName} <span
 							class="caret"></span>
@@ -38,13 +38,13 @@
 						<ul class="dropdown-menu">
 
 							<security:authorize access="hasAuthority('USER')">
-								<li><a href="${ContextRoot}/cart"> <span
-										class="glyphicon glyphicon-shopping-cart"></span> <span
-										class="badge">${userModel.cart.cartLines} </span> - &#8377;
-										${userModel.cart.grandTotal}
-
-
-								</a></li>
+								<li>
+								<a href="${contextRoot}/cart/show">
+									<span class="glyphicon glyphicon-shopping-cart"></span>&#160;
+									<span class="badge">${userModel.cart.cartLines}</span> - &#8377;
+									 ${userModel.cart.grandTotal} 
+								</a>
+								</li>
 
 								<li class="divider" role="seprator"></li>
 							</security:authorize>

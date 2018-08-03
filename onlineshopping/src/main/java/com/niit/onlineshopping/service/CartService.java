@@ -2,7 +2,6 @@ package com.niit.onlineshopping.service;
 
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,54 +15,78 @@ import com.niit.shoppingbackend.model.CartLine;
 import com.niit.shoppingbackend.model.Product;
 
 @Service("cartService")
-public class CartService 
+public class CartService
+
 {
+
 	@Autowired
 	private CartLineDAO cartLineDAO;
 	
 	@Autowired
-	private ProductDAO productDAO;
-	
-	@Autowired
 	private HttpSession session;
 	
-	//returns cart of the user who has logged in
-	private Cart getCart()
+	@Autowired
+	private ProductDAO productDAO;
+	
+	
+	
+	
+	//returns the cart of user who has logged in
+	private Cart getCart() 
+	
 	{
-		return ((UserModel)session.getAttribute("userModel")).getCart();
+		return((UserModel)session.getAttribute("userModel")).getCart();
+		
 	}
 	
-	//returns the entire cart line
-	public List<CartLine> getCartLines()
+	
+	//return entire cart lines
+	public List<CartLine> getCartLines() 
 	{
-		return cartLineDAO.list(this.getCart().getId());
+	
+		return cartLineDAO.list(getCart().getId());
+
 	}
 
+
 	public String updateCartLine(int cartLineId, int count) 
+	
 	{
-		//fetch the cartline
-		CartLine cartLine = cartLineDAO.get(cartLineId);
+
+		//fetch cartline
+		CartLine cartLine=cartLineDAO.get(cartLineId);
 		
 		if(cartLine == null)
 		{
 			return "result=error";
+			
 		}
 		else
 		{
-			Product product = cartLine.getProduct();
+			Product product=cartLine.getProduct();
+			
 			double oldTotal = cartLine.getTotal();
 			
+			
+			
+			//checking if product is available
 			if(product.getQuantity() < count)
 			{
+				
+//				count=product.getQuantity();
 				return "result=unavailable";
 			}
 			
+			// update the cart line
+			
 			cartLine.setProductCount(count);
+		
 			cartLine.setBuyingPrice(product.getUnitPrice());
 			cartLine.setTotal(product.getUnitPrice() * count);
-			
 			cartLineDAO.update(cartLine);
 			
+			
+			// update the cart
 			Cart cart = this.getCart();
 			cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());
 			cartLineDAO.updateCart(cart);
@@ -72,11 +95,47 @@ public class CartService
 		}
 		
 	}
+
+
+	public String deleteCartLine(int cartLineId) 
+	{
+					//fetch cartline	
+		CartLine cartLine=cartLineDAO.get(cartLineId);
+		
+		if(cartLine == null)
+		{
+			
+			return "result=error";
+		}
+		else
+		{
+			//update he cart
+			Cart cart = this.getCart();
+			cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
+			cart.setCartLines(cart.getCartLines() - 1);
+			cartLineDAO.updateCart(cart);
+
+			
+			
+			//remove cart line
+			
+			cartLineDAO.delete(cartLine);
+			
+			return "result=deleted";
+
+			
+		}
+		
+	}
+
+
 	public String addCartLine(int productId) 
 	
 	{
 		String response =null;
+		
 		Cart cart=this.getCart();
+		
 		CartLine cartLine= cartLineDAO.getbyCartAndProduct(cart.getId(), productId);	
 		
 		if(cartLine==null)
@@ -86,16 +145,20 @@ public class CartService
 			cartLine = new CartLine();
 			
 			//fetch product
+			
 			Product product=productDAO.get(productId);
 			
 			cartLine.setCartId(cart.getId());
+			
 			cartLine.setProduct(product);
 			cartLine.setBuyingPrice(product.getUnitPrice());
 			cartLine.setProductCount(1);
 			cartLine.setTotal(product.getUnitPrice());
 			cartLine.setAvailable(true);
 			
+			
 			cartLineDAO.add(cartLine);
+			
 			
 			cart.setCartLines(cart.getCartLines() + 1);
 			cart.setGrandTotal(cart.getGrandTotal() + cartLine.getTotal());
@@ -109,6 +172,7 @@ public class CartService
 		else
 		{
 			//check if cart line has reached maxmimun count
+			
 			if(cartLine.getProductCount() < 3)
 			{
 				
@@ -118,40 +182,88 @@ public class CartService
 				
 			}
 			else
-			{	
-				return "result=maximum";	
+			{
+				
+				
+				return "result=maximum";
+				
 			}
 			
 		}
+		
+		
 				return null;
 	}
 
-	public String deleteCartLine(int cartLineId) 
+
+
+
+	public String validateCartLine() 
 	{
-	
-		//fetch the cart line
-		CartLine cartLine = cartLineDAO.get(cartLineId);
-		
-		if(cartLine == null)
-		{
-			return "result=error";
+		Cart cart = this.getCart();
+		List<CartLine> cartLines = cartLineDAO.list(cart.getId());
+		double grandTotal = 0.0;
+		int lineCount = 0;
+		String response = "result=success";
+		boolean changed = false;
+		Product product = null;
+		for(CartLine cartLine : cartLines) {					
+			product = cartLine.getProduct();
+			changed = false;
+			// check if the product is active or not
+			// if it is not active make the availability of cartLine as false
+			if((!product.isActive() && product.getQuantity() == 0) && cartLine.isAvailable()) {
+				cartLine.setAvailable(false);
+				changed = true;
+			}			
+			// check if the cartLine is not available
+			// check whether the product is active and has at least one quantity available
+			if((product.isActive() && product.getQuantity() > 0) && !(cartLine.isAvailable())) {
+					cartLine.setAvailable(true);
+					changed = true;
+			}
+			
+			// check if the buying price of product has been changed
+			if(cartLine.getBuyingPrice() != product.getUnitPrice()) {
+				// set the buying price to the new price
+				cartLine.setBuyingPrice(product.getUnitPrice());
+				// calculate and set the new total
+				cartLine.setTotal(cartLine.getProductCount() * product.getUnitPrice());
+				changed = true;				
+			}
+			
+			// check if that much quantity of product is available or not
+			if(cartLine.getProductCount() > product.getQuantity()) {
+				cartLine.setProductCount(product.getQuantity());										
+				cartLine.setTotal(cartLine.getProductCount() * product.getUnitPrice());
+				changed = true;
+				
+			}
+			
+			// changes has happened
+			if(changed) {				
+				//update the cartLine
+				cartLineDAO.update(cartLine);
+				// set the result as modified
+				response = "result=modified";
+			}
+			
+			grandTotal += cartLine.getTotal();
+			lineCount++;
 		}
-		else
-		{
-			//update cart
-			Cart cart = this.getCart();
-			
-			cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
-			cart.setCartLines(cart.getCartLines() - 1);
-			cartLineDAO.updateCart(cart);
-			
-			//remove cart line
-			cartLineDAO.delete(cartLine);
-			
-			return "result=deleted";
-		}
 		
+		cart.setCartLines(lineCount++);
+		cart.setGrandTotal(grandTotal);
+		cartLineDAO.updateCart(cart);
+
+		return response;
 	}
 
 
 }
+	
+	
+	
+	
+	
+

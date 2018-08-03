@@ -116,7 +116,7 @@ INSERT INTO category (name, description,image_url,is_active) VALUES ('Mobile', '
 -- adding three users 
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Savio', 'Menezes', 'ADMIN', true, '$2y$12$3h4Fs3.SWg7ik6Y.7wcjNudPw39s68SDD2eCf2I9P3FMHRtBVB4.e', 'sm@gmail.com', '8888888888');
+VALUES ('Virat', 'Kholi', 'ADMIN', true, '$2y$12$3h4Fs3.SWg7ik6Y.7wcjNudPw39s68SDD2eCf2I9P3FMHRtBVB4.e', 'vk@gmail.com', '8888888888');
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Ravindra', 'Jadeja', 'SUPPLIER', true, '$2y$12$cLTZCAtkBgV1B1fnEbJiJuJNFUj54RaZbq6qdd618ow8k1S48pyxq', 'rj@gmail.com', '9999999999');

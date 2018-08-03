@@ -14,41 +14,10 @@ import com.niit.shoppingbackend.model.User;
 
 @Repository("userDAO")
 @Transactional
-public class UserDAOImpl implements UserDAO
-{
+public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	@Override
-	public boolean addUser(User user) 
-	{
-		try
-		{
-			sessionFactory.getCurrentSession().persist(user);
-			return true;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-			return false;
-		}
-	}
-
-	@Override
-	public boolean addAddress(Address address) 
-	{
-		try
-		{
-			sessionFactory.getCurrentSession().persist(address);
-			return true;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-			return false;
-		}
-	}
 
 	@Override
 	public User getByEmail(String email) {
@@ -61,49 +30,84 @@ public class UserDAOImpl implements UserDAO
 							.getSingleResult();
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
 			return null;
 		}
 							
-}
+	}
+
 
 	@Override
-	public Address getBillingAddress(int userId) 
-	
-	{
-		String selectQuery = "FROM Address WHERE user = :user AND billing = :billing";
-		try
-		{
-			return sessionFactory.getCurrentSession()
-					.createQuery(selectQuery, Address.class)
-						.setParameter("user_id", userId)
-							.setParameter("billing", true)
-								.getSingleResult();
+	public boolean addAddress(Address address) {
+		try {			
+			// will look for this code later and why we need to change it
+			sessionFactory.getCurrentSession().persist(address);			
+			return true;
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+		catch(Exception ex) {
+			return false;
+		}
+	}
+	
+
+	@Override
+	public List<Address> listShippingAddresses(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :userId AND shipping = :isShipping ORDER BY id DESC";
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isShipping", true)
+							.getResultList();
+		
+	}
+
+	@Override
+	public Address getBillingAddress(int userId) {
+		String selectQuery = "FROM Address WHERE userId = :userId AND billing = :isBilling";
+		try{
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectQuery,Address.class)
+						.setParameter("userId", userId)
+						.setParameter("isBilling", true)
+						.getSingleResult();
+		}
+		catch(Exception ex) {
 			return null;
 		}
 	}
 
 	@Override
-	public List<Address> listShippingAddresses(int userId)
-	{
-	
-		String selectQuery = "FROM Address WHERE user = :user AND shipping = :shipping";
-		try
-		{
-			return sessionFactory.getCurrentSession()
-					.createQuery(selectQuery, Address.class)
-						.setParameter("user_id", userId)
-							.setParameter("shipping", true)
-								.getResultList();
+	public User get(int id) {
+		try {			
+			return sessionFactory.getCurrentSession().get(User.class, id);			
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public Address getAddress(int addressId) {
+		try {			
+			return sessionFactory.getCurrentSession().get(Address.class, addressId);			
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+			return null;
+		}
+	}
+
+
+	@Override
+	public boolean addUser(User user) {
+		try {			
+			sessionFactory.getCurrentSession().persist(user);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
 		}
 	}
 }

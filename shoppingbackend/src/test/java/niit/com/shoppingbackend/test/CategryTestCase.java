@@ -1,7 +1,5 @@
 package niit.com.shoppingbackend.test;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -111,9 +109,9 @@ public class CategryTestCase {
 		
 		*/
 		
-		//fetching the list
+		/*//fetching the list
 		assertEquals("Successfully fetched the list of categories from the table!",2,categoryDAO.list().size());		
-				
+		*/		
 		
 	}
 

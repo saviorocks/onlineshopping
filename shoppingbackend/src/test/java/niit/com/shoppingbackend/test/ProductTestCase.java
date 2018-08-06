@@ -52,7 +52,7 @@ public class ProductTestCase {
 
 	}*/
 
-	@Test
+	/*@Test
 	public void testListActiveProducts() {
 		assertEquals("Something went wrong while fetching the list of products!", 5,
 				productDAO.listActiveProducts().size());
@@ -71,6 +71,6 @@ public class ProductTestCase {
 		assertEquals("Something went wrong while fetching the list of products!", 3,
 				productDAO.getLatestActiveProducts(3).size());
 
-	}
+	}*/
 
 }
